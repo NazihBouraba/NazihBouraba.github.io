@@ -245,6 +245,42 @@ section{position:relative}
 .toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,140%);background:var(--fg);color:#000;padding:12px 20px;border-radius:999px;z-index:160;font-weight:500;transition:transform .5s var(--ease)}
 .toast.show{transform:translate(-50%,0)}
 
+/* case-study drawer */
+.more{display:inline-flex;align-items:center;gap:.4rem;margin-top:1.1rem;color:var(--acc);font-size:.74rem}
+.proj{cursor:pointer}
+.proj:focus-visible{outline:2px solid var(--acc);outline-offset:4px}
+.cs-back{position:fixed;inset:0;z-index:120;background:rgba(5,5,7,.62);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity .5s}
+.cs-back.open{opacity:1;pointer-events:auto}
+.cs{position:fixed;top:0;right:0;bottom:0;z-index:121;width:min(780px,100%);background:var(--bg2);border-left:1px solid var(--line);transform:translateX(100%);transition:transform .75s var(--ease),visibility 0s .75s;visibility:hidden;display:flex;flex-direction:column}
+.cs.open{transform:none;visibility:visible;transition:transform .75s var(--ease)}
+.cs-close{position:absolute;top:18px;right:18px;z-index:2;width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:var(--bg2);display:grid;place-items:center;transition:transform .5s var(--ease),background .3s,color .3s}
+.cs-close:hover{transform:rotate(90deg);background:var(--acc);color:#000}
+.cs-close svg{width:18px;height:18px}
+.cs-inner{overflow-y:auto;overscroll-behavior:contain;padding:clamp(28px,5vw,60px) clamp(20px,5vw,60px) 60px;flex:1}
+.cs-k{color:var(--acc);display:flex;gap:.6rem;flex-wrap:wrap;padding-right:56px}
+.cs h3{font-size:clamp(2rem,5vw,3.6rem);font-weight:800;letter-spacing:-.05em;line-height:.98;margin:1rem 0 .9rem}
+.cs-lead{font-size:clamp(1.05rem,1.8vw,1.3rem);color:#d6d5cd;max-width:44ch}
+.cs-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin:2rem 0 2.4rem}
+.cs-meta div{background:var(--bg2);padding:14px 16px}
+.cs-meta .mono{color:var(--mute);font-size:.66rem;display:block;margin-bottom:.35rem}
+.cs-meta b{font-weight:500;font-size:.95rem;line-height:1.35;display:block}
+.cs-sec{display:grid;grid-template-columns:150px 1fr;gap:1.4rem;padding:1.4rem 0;border-top:1px solid var(--line)}
+.cs-sec h4{font-family:var(--mono);font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;color:var(--mute);font-weight:400;padding-top:.25rem}
+.cs-sec p,.cs-sec li{color:#d0cfc7;line-height:1.6}
+.cs-sec ul{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+.cs-sec li{display:grid;grid-template-columns:20px 1fr;gap:.4rem}
+.cs-sec li::before{content:"→";color:var(--acc);font-family:var(--mono)}
+.cs-dec{border-left:2px solid var(--acc2);padding-left:1rem;font-style:normal}
+.cs-res{margin-top:1.4rem;border-radius:20px;padding:clamp(20px,3vw,30px);background:linear-gradient(135deg,rgba(200,255,62,.12),rgba(139,123,255,.08));border:1px solid rgba(200,255,62,.25);display:grid;grid-template-columns:auto 1fr;gap:1.4rem;align-items:center}
+.cs-res .big-n{font-size:clamp(2.2rem,5vw,3.4rem);font-weight:800;letter-spacing:-.05em;color:var(--acc);line-height:1;white-space:nowrap}
+.cs-res p{color:#e4e3db}
+.cs-actions{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;margin-top:2.2rem}
+.cs-next{display:inline-flex;align-items:center;gap:.6rem;color:var(--mute);transition:color .3s}
+.cs-next:hover{color:var(--fg)}
+.cs-next b{color:var(--fg);font-weight:600}
+@media (max-width:640px){.cs-meta{grid-template-columns:1fr}.cs-sec{grid-template-columns:1fr;gap:.5rem}.cs-res{grid-template-columns:1fr}}
+html.cs-lock{overflow:hidden}
+
 footer{border-top:1px solid var(--line);padding-block:26px}
 footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;color:var(--mute)}
 footer a:hover{color:var(--acc)}
@@ -363,11 +399,11 @@ footer a:hover{color:var(--acc)}
           <h3>AppCraft</h3>
           <div class="role" data-i18n="xp1.role">Développeur full stack <span class="serif">senior</span></div>
           <div class="date mono"><span data-i18n="xp1.date">Mai 2026 — aujourd'hui</span></div>
-          <div class="tags"><span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Node.js</span><span class="tag">NestJS</span><span class="tag">n8n</span><span class="tag">HubSpot</span><span class="tag">Pennylane</span><span class="tag">Cursor</span></div>
+          <div class="tags"><span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Node.js</span><span class="tag">NestJS</span><span class="tag">n8n</span><span class="tag">Dust</span><span class="tag">MCP</span><span class="tag">HubSpot</span><span class="tag">Pennylane</span><span class="tag">Cursor</span></div>
         </div>
         <ul>
-          <li><span data-i18n="xp1.b1">Fonctionnalités pour les applications clients, dont une <strong>interface de webmail personnalisée</strong>, en React, TypeScript, Node.js et NestJS.</span></li>
-          <li><span data-i18n="xp1.b2"><strong>Workflows n8n</strong> : devis synchronisés avec HubSpot, facturation reliée à Pennylane, correction de données et génération de devis.</span></li>
+          <li><span data-i18n="xp1.b1">Fonctionnalités pour les applications clients, dont une <strong>plateforme de gestion d'événements avec webmail intégré</strong>, synchronisée en temps réel (React, TypeScript, NestJS).</span></li>
+          <li><span data-i18n="xp1.b2"><strong>Workflows n8n et agents IA Dust</strong> : devis HubSpot et facturation Pennylane synchronisés en quasi temps réel, avec un <strong>serveur MCP maison</strong> pour Pennylane.</span></li>
           <li><span data-i18n="xp1.b3">Intégrations et évolutions produit ; développement assisté par IA (Cursor) avec <strong>revue, adaptation et validation</strong> du code livré.</span></li>
         </ul>
       </article>
@@ -380,8 +416,8 @@ footer a:hover{color:var(--acc)}
           <div class="tags"><span class="tag">React Native</span><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">Stripe Express</span><span class="tag">Firebase Crashlytics</span><span class="tag">Expo</span></div>
         </div>
         <ul>
-          <li><span data-i18n="xp2.b1"><strong>Pilotage technique</strong> des apps React Native, d'un back-office React et d'une API Node.js pour un service de pressing à domicile ; accompagnement de développeurs juniors.</span></li>
-          <li><span data-i18n="xp2.b2">Déploiement <strong>multi-villes</strong> : zones géographiques configurables, administration locale et paiements partenaires via Stripe Express.</span></li>
+          <li><span data-i18n="xp2.b1"><strong>Pilotage technique</strong> des apps React Native, d'un back-office React et d'une API Node.js pour un service de pressing à domicile ; accompagnement de <strong>3 développeurs juniors</strong>.</span></li>
+          <li><span data-i18n="xp2.b2">Déploiement dans <strong>3 villes</strong> : zones géographiques configurables, administration locale et paiements partenaires via Stripe Express.</span></li>
           <li><span data-i18n="xp2.b3">Refonte de composants critiques et suivi de production avec Crashlytics : <strong>−50 % de crashs, −20 % de latence</strong>.</span></li>
         </ul>
       </article>
@@ -409,7 +445,7 @@ footer a:hover{color:var(--acc)}
     <div class="work">
 
       <!-- Webmail -->
-      <article class="proj rv">
+      <article class="proj rv" data-case="events" tabindex="0" role="button" aria-haspopup="dialog" data-cursor="label" data-label-fr="Lire" data-label-en="Read">
         <div class="viz">
           <svg viewBox="0 0 640 340" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
             <defs><linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#c8ff3e"/><stop offset="1" stop-color="#8b7bff"/></linearGradient></defs>
@@ -430,14 +466,15 @@ footer a:hover{color:var(--acc)}
           </svg>
         </div>
         <div class="proj-body">
-          <div class="proj-top mono"><span>AppCraft · 2026</span></div>
-          <h3 data-i18n="p1.t">Webmail sur mesure</h3>
-          <p data-i18n="p1.d">Une interface de messagerie personnalisée pour les applications clients, construite en React et TypeScript sur une API Node.js / NestJS.</p>
+          <div class="proj-top mono"><span>AppCraft · 2026</span><span class="arrow" aria-hidden="true">↗</span></div>
+          <h3 data-i18n="p1.t">Tous ses événements, un seul outil</h3>
+          <p data-i18n="p1.d">Une plateforme qui centralise la gestion d'événements — webmail compris — synchronisée en temps réel. En production.</p>
+          <span class="more mono"><span data-i18n="more">Lire l\'étude de cas</span> →</span>
         </div>
       </article>
 
       <!-- n8n -->
-      <article class="proj rv">
+      <article class="proj rv" data-case="automation" tabindex="0" role="button" aria-haspopup="dialog" data-cursor="label" data-label-fr="Lire" data-label-en="Read">
         <div class="viz">
           <svg viewBox="0 0 460 340" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
             <g fill="none" stroke="rgba(236,235,228,.18)" stroke-width="2">
@@ -465,14 +502,15 @@ footer a:hover{color:var(--acc)}
           </svg>
         </div>
         <div class="proj-body">
-          <div class="proj-top mono"><span>n8n · HubSpot · Pennylane</span></div>
-          <h3 data-i18n="p2.t">Workflows qui travaillent seuls</h3>
-          <p data-i18n="p2.d">Devis synchronisés avec HubSpot, facturation reliée à Pennylane, données corrigées et devis générés automatiquement.</p>
+          <div class="proj-top mono"><span>n8n · HubSpot · Pennylane</span><span class="arrow" aria-hidden="true">↗</span></div>
+          <h3 data-i18n="p2.t">Devis et factures sans ressaisie</h3>
+          <p data-i18n="p2.d">n8n, agents IA Dust et un serveur MCP maison relient HubSpot et Pennylane : fini les oublis, ≈ 5 min de décalage.</p>
+          <span class="more mono"><span data-i18n="more">Lire l\'étude de cas</span> →</span>
         </div>
       </article>
 
       <!-- Hublo multi-city -->
-      <article class="proj rv">
+      <article class="proj rv" data-case="hublo" tabindex="0" role="button" aria-haspopup="dialog" data-cursor="label" data-label-fr="Lire" data-label-en="Read">
         <div class="viz">
           <svg viewBox="0 0 460 340" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
             <g stroke="rgba(236,235,228,.06)"><path d="M0 60H460M0 120H460M0 180H460M0 240H460M0 300H460M60 0V340M120 0V340M180 0V340M240 0V340M300 0V340M360 0V340M420 0V340"/></g>
@@ -496,14 +534,15 @@ footer a:hover{color:var(--acc)}
           </svg>
         </div>
         <div class="proj-body">
-          <div class="proj-top mono"><span>Hublo · 2021—2026</span></div>
+          <div class="proj-top mono"><span>Hublo · 2021—2026</span><span class="arrow" aria-hidden="true">↗</span></div>
           <h3 data-i18n="p3.t">Un service, plusieurs villes</h3>
           <p data-i18n="p3.d">Apps React Native, back-office React et API Node.js : zones configurables, admin locale, paiements partenaires Stripe Express.</p>
+          <span class="more mono"><span data-i18n="more">Lire l\'étude de cas</span> →</span>
         </div>
       </article>
 
       <!-- Ligne 14 -->
-      <article class="proj rv">
+      <article class="proj rv" data-case="l14" tabindex="0" role="button" aria-haspopup="dialog" data-cursor="label" data-label-fr="Lire" data-label-en="Read">
         <div class="viz">
           <svg viewBox="0 0 640 340" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
             <path id="l14" d="M40 250 C140 250 160 120 260 120 S400 220 480 160 S580 80 610 90" fill="none" stroke="#62259d" stroke-width="16" stroke-linecap="round"/>
@@ -522,9 +561,10 @@ footer a:hover{color:var(--acc)}
           </svg>
         </div>
         <div class="proj-body">
-          <div class="proj-top mono"><span>IKOS · 2023—2024</span></div>
+          <div class="proj-top mono"><span>IKOS · 2023—2024</span><span class="arrow" aria-hidden="true">↗</span></div>
           <h3 data-i18n="p4.t">Ligne 14 : prouver plutôt que tester</h3>
           <p data-i18n="p4.d">Validation formelle du logiciel d'automatisation du métro parisien avec le langage B et BOVADO, dans un contexte à fortes exigences de sûreté.</p>
+          <span class="more mono"><span data-i18n="more">Lire l\'étude de cas</span> →</span>
         </div>
       </article>
     </div>
@@ -541,7 +581,7 @@ footer a:hover{color:var(--acc)}
       <div class="sk rv"><h4><span data-i18n="sk.g2">Données &amp; intégrations</span><span class="mono">02</span></h4>
         <div class="chips"><span class="chip">PostgreSQL</span><span class="chip">MySQL</span><span class="chip">Redis</span><span class="chip">Sequelize</span><span class="chip">TypeORM</span><span class="chip">Stripe</span><span class="chip">HubSpot</span><span class="chip">Pennylane</span></div></div>
       <div class="sk rv"><h4><span data-i18n="sk.g3">Automatisation &amp; outils</span><span class="mono">03</span></h4>
-        <div class="chips"><span class="chip">n8n</span><span class="chip">Cursor</span><span class="chip">GitHub Actions</span><span class="chip">CI/CD</span><span class="chip">Docker</span><span class="chip">Firebase Crashlytics</span></div></div>
+        <div class="chips"><span class="chip">n8n</span><span class="chip">Dust</span><span class="chip">MCP</span><span class="chip">Cursor</span><span class="chip">GitHub Actions</span><span class="chip">CI/CD</span><span class="chip">Docker</span><span class="chip">Firebase Crashlytics</span></div></div>
     </div>
     <div class="edu">
       <div class="edu-item rv"><span class="y">2022</span><div><h5 data-i18n="ed.1">Master 2 Logiciels sûrs</h5><p>Université Paris-Est Créteil</p></div></div>
@@ -570,6 +610,12 @@ footer a:hover{color:var(--acc)}
   </div>
 </section>
 </main>
+
+<div class="cs-back" id="csBack"></div>
+<aside class="cs" id="cs" role="dialog" aria-modal="true" aria-labelledby="csTitle" aria-hidden="true">
+  <button class="cs-close" id="csClose" aria-label="Fermer" data-cursor="hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  <div class="cs-inner" id="csInner" data-lenis-prevent></div>
+</aside>
 
 <footer>
   <div class="wrap mono">
@@ -601,19 +647,19 @@ fr:{
  "st.1":"années à livrer en production","st.2":"de crashs en production chez Hublo","st.3":"de latence après refonte","st.4":"ligne de métro : validation formelle du logiciel",
  "xp.title":"Par<span class=\"serif\">cours</span>","xp.label":"(02) — 2021 → aujourd'hui",
  "xp1.role":"Développeur full stack <span class=\"serif\">senior</span>","xp1.date":"Mai 2026 — aujourd'hui",
- "xp1.b1":"Fonctionnalités pour les applications clients, dont une <strong>interface de webmail personnalisée</strong>, en React, TypeScript, Node.js et NestJS.",
- "xp1.b2":"<strong>Workflows n8n</strong> : devis synchronisés avec HubSpot, facturation reliée à Pennylane, correction de données et génération de devis.",
+ "xp1.b1":"Fonctionnalités pour les applications clients, dont une <strong>plateforme de gestion d'événements avec webmail intégré</strong>, synchronisée en temps réel (React, TypeScript, NestJS).",
+ "xp1.b2":"<strong>Workflows n8n et agents IA Dust</strong> : devis HubSpot et facturation Pennylane synchronisés en quasi temps réel, avec un <strong>serveur MCP maison</strong> pour Pennylane.",
  "xp1.b3":"Intégrations et évolutions produit ; développement assisté par IA (Cursor) avec <strong>revue, adaptation et validation</strong> du code livré.",
  "xp2.role":"Tech Lead · Full stack &amp; <span class=\"serif\">mobile</span>","xp2.date":"Sept. 2021 — mars 2026",
- "xp2.b1":"<strong>Pilotage technique</strong> des apps React Native, d'un back-office React et d'une API Node.js pour un service de pressing à domicile ; accompagnement de développeurs juniors.",
- "xp2.b2":"Déploiement <strong>multi-villes</strong> : zones géographiques configurables, administration locale et paiements partenaires via Stripe Express.",
+ "xp2.b1":"<strong>Pilotage technique</strong> des apps React Native, d'un back-office React et d'une API Node.js pour un service de pressing à domicile ; accompagnement de <strong>3 développeurs juniors</strong>.",
+ "xp2.b2":"Déploiement dans <strong>3 villes</strong> : zones géographiques configurables, administration locale et paiements partenaires via Stripe Express.",
  "xp2.b3":"Refonte de composants critiques et suivi de production avec Crashlytics : <strong>−50 % de crashs, −20 % de latence</strong>.",
  "xp3.role":"Ingénieur logiciel · <span class=\"serif\">freelance</span>","xp3.date":"Oct. 2023 — oct. 2024 · en parallèle","xp3.t1":"Langage B","xp3.t2":"Méthodes formelles",
  "xp3.b1":"<strong>Validation formelle</strong> du logiciel d'automatisation de la <strong>ligne 14 du métro parisien</strong>, avec le langage B et BOVADO.",
  "xp3.b2":"Un environnement à fortes exigences de fiabilité, où chaque propriété doit être démontrée — une rigueur que j'applique depuis à chaque livraison.",
  "work.title":"Réali<span class=\"serif\">sations</span>","work.label":"(03) — Sélection",
- "p1.t":"Webmail sur mesure","p1.d":"Une interface de messagerie personnalisée pour les applications clients, construite en React et TypeScript sur une API Node.js / NestJS.",
- "p2.t":"Workflows qui travaillent seuls","p2.d":"Devis synchronisés avec HubSpot, facturation reliée à Pennylane, données corrigées et devis générés automatiquement.",
+ "p1.t":"Tous ses événements, un seul outil","p1.d":"Une plateforme qui centralise la gestion d'événements — webmail compris — synchronisée en temps réel. En production.",
+ "p2.t":"Devis et factures sans ressaisie","p2.d":"n8n, agents IA Dust et un serveur MCP maison relient HubSpot et Pennylane : fini les oublis, ≈ 5 min de décalage.",
  "p3.t":"Un service, plusieurs villes","p3.d":"Apps React Native, back-office React et API Node.js : zones configurables, admin locale, paiements partenaires Stripe Express.",
  "p4.t":"Ligne 14 : prouver plutôt que tester","p4.d":"Validation formelle du logiciel d'automatisation du métro parisien avec le langage B et BOVADO, dans un contexte à fortes exigences de sûreté.",
  "sk.title":"Boîte à <span class=\"serif\">outils</span>","sk.label":"(04) — Stack","sk.g1":"Développement","sk.g2":"Données &amp; intégrations","sk.g3":"Automatisation &amp; outils",
@@ -621,7 +667,7 @@ fr:{
  "lg.fr":"Français · pro","lg.en":"Anglais · pro","lg.ar":"Arabe · natif",
  "ct.label":"(05) — Contact","ct.l1":"Construisons","ct.l2":"ensemble",
  "ct.p":"Ouvert aux postes full stack senior en 100 % télétravail depuis la France. Une idée, un produit, une équipe à renforcer ? Écrivez-moi.",
- "ct.cv":"CV (PDF)","ft.tz":"(heure de Paris)","ft.top":"Retour en haut ↑",copied:"Adresse copiée ✓"
+ more:"Lire l'étude de cas","ct.cv":"CV (PDF)","ft.tz":"(heure de Paris)","ft.top":"Retour en haut ↑",copied:"Adresse copiée ✓"
 },
 en:{
  loading:"Loading",menu:"Menu","nav.about":"About","nav.xp":"Experience","nav.work":"Work","nav.skills":"Skills","nav.contact":"Contact",
@@ -633,19 +679,19 @@ en:{
  "st.1":"years shipping to production","st.2":"production crashes at Hublo","st.3":"latency after the refactor","st.4":"Paris Metro line: formal software validation",
  "xp.title":"Experi<span class=\"serif\">ence</span>","xp.label":"(02) — 2021 → today",
  "xp1.role":"Senior full-stack <span class=\"serif\">developer</span>","xp1.date":"May 2026 — present",
- "xp1.b1":"Client-facing features, including a <strong>custom webmail interface</strong>, built with React, TypeScript, Node.js and NestJS.",
- "xp1.b2":"<strong>n8n workflows</strong> to sync HubSpot quotes, connect Pennylane invoicing, correct business data and generate quotes.",
+ "xp1.b1":"Client-facing features, including an <strong>event management platform with built-in webmail</strong>, synced in real time (React, TypeScript, NestJS).",
+ "xp1.b2":"<strong>n8n workflows and Dust AI agents</strong> syncing HubSpot quotes and Pennylane invoicing in near real time, with a <strong>custom-built MCP server</strong> for Pennylane.",
  "xp1.b3":"Integrations and product work; AI-assisted development (Cursor) with <strong>review, adaptation and validation</strong> of every change.",
  "xp2.role":"Tech Lead · Full-stack &amp; <span class=\"serif\">mobile</span>","xp2.date":"Sept. 2021 — March 2026",
- "xp2.b1":"<strong>Led technical delivery</strong> across React Native apps, a React back office and a Node.js API for an at-home laundry service; mentored junior developers.",
- "xp2.b2":"Shipped <strong>multi-city</strong> capabilities: configurable geographic zones, regional administration and partner payments via Stripe Express.",
+ "xp2.b1":"<strong>Led technical delivery</strong> across React Native apps, a React back office and a Node.js API for an at-home laundry service; mentored <strong>3 junior developers</strong>.",
+ "xp2.b2":"Expanded to <strong>3 cities</strong>: configurable geographic zones, regional administration and partner payments via Stripe Express.",
  "xp2.b3":"Refactored critical components and improved monitoring with Crashlytics: <strong>−50% crashes, −20% latency</strong>.",
  "xp3.role":"Software engineer · <span class=\"serif\">freelance</span>","xp3.date":"Oct. 2023 — Oct. 2024 · concurrent","xp3.t1":"B language","xp3.t2":"Formal methods",
  "xp3.b1":"<strong>Formal validation</strong> of the automation software for <strong>Paris Metro Line 14</strong>, using the B language and BOVADO.",
  "xp3.b2":"A safety-critical environment where every property has to be proven — a rigor I've brought to every release since.",
  "work.title":"Selected <span class=\"serif\">work</span>","work.label":"(03) — Highlights",
- "p1.t":"Custom webmail","p1.d":"A tailored messaging interface for client applications, built with React and TypeScript on a Node.js / NestJS API.",
- "p2.t":"Workflows that run themselves","p2.d":"Quotes synced with HubSpot, invoicing connected to Pennylane, data corrected and quotes generated automatically.",
+ "p1.t":"All their events, one tool","p1.d":"A platform that centralises event management — webmail included — synced in real time. In production.",
+ "p2.t":"Quotes and invoices, no re-typing","p2.d":"n8n, Dust AI agents and a custom MCP server connect HubSpot and Pennylane: no more missed items, ~5 min lag.",
  "p3.t":"One service, many cities","p3.d":"React Native apps, React back office and Node.js API: configurable zones, regional admin, Stripe Express partner payouts.",
  "p4.t":"Line 14: prove, don't just test","p4.d":"Formal validation of the Paris Metro automation software with the B language and BOVADO, in a safety-critical setting.",
  "sk.title":"Tool<span class=\"serif\">box</span>","sk.label":"(04) — Stack","sk.g1":"Development","sk.g2":"Data &amp; integrations","sk.g3":"Automation &amp; tooling",
@@ -653,7 +699,7 @@ en:{
  "lg.fr":"French · professional","lg.en":"English · professional","lg.ar":"Arabic · native",
  "ct.label":"(05) — Contact","ct.l1":"Let's build","ct.l2":"together",
  "ct.p":"Open to senior full-stack roles, fully remote from France. An idea, a product, a team to strengthen? Drop me a line.",
- "ct.cv":"Resume (PDF)","ft.tz":"(Paris time)","ft.top":"Back to top ↑",copied:"Email copied ✓"
+ more:"Read the case study","ct.cv":"Resume (PDF)","ft.tz":"(Paris time)","ft.top":"Back to top ↑",copied:"Email copied ✓"
 }};
 let lang = 'fr';
 try { lang = localStorage.getItem('lang') || ((navigator.language||'fr').toLowerCase().startsWith('fr') ? 'fr' : 'en'); } catch(e) {}
@@ -689,6 +735,7 @@ function applyLang(l){
   sw.querySelectorAll('button').forEach(b => { const on = b.dataset.set === l; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); });
   document.title = l === 'fr' ? 'Abdelouareth Bouraba — Développeur full stack senior' : 'Abdelouareth Bouraba — Senior full-stack engineer';
   buildStatement();
+  if (typeof currentCase !== 'undefined' && currentCase) renderCase(currentCase);
   if (MOTION) ScrollTrigger.refresh();
 }
 document.querySelectorAll('#lang button').forEach(b => b.addEventListener('click', () => applyLang(b.dataset.set)));
@@ -716,7 +763,7 @@ function setMenu(open){
 }
 menuBtn.addEventListener('click', () => setMenu(menuBtn.getAttribute('aria-expanded') !== 'true'));
 mnav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false), { capture:true }));
-addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+addEventListener('keydown', e => { if (e.key === 'Escape') { setMenu(false); if (currentCase) closeCase(); } });
 
 /* ---------------- nav hide on scroll ---------------- */
 const nav = document.getElementById('nav'); let lastY = 0;
@@ -819,6 +866,131 @@ document.querySelectorAll('.proj, .xp').forEach(el => {
 if (MOTION && fine) document.querySelectorAll('.magnetic, .badge').forEach(el => {
   el.addEventListener('pointermove', e => { const r = el.getBoundingClientRect(); gsap.to(el, { x:(e.clientX - r.left - r.width/2)*.3, y:(e.clientY - r.top - r.height/2)*.4, duration:.5, ease:'power3' }); });
   el.addEventListener('pointerleave', () => gsap.to(el, { x:0, y:0, duration:.9, ease:'elastic.out(1,.4)' }));
+});
+
+/* ---------------- case studies ---------------- */
+const CASES = {
+fr:{ _l:{ role:"Rôle", stack:"Stack", status:"Statut", ctx:"Contexte", pb:"Problème", did:"Ce que j'ai fait", dec:"Décision clé", res:"Résultat", next:"Étude suivante", close:"Fermer" },
+ events:{ k:["AppCraft","2026","En production"], t:"Tous ses événements, un seul outil",
+  lead:"Centraliser la gestion des événements — webmail compris — dans une seule plateforme.",
+  role:"Développeur full stack senior", stack:"React · TypeScript · Node.js · NestJS", status:"En production",
+  ctx:"AppCraft conçoit des applications sur mesure pour ses clients. L'un d'eux a besoin de gérer ses événements de bout en bout.",
+  pb:"La gestion d'un événement était éclatée entre plusieurs outils, messagerie comprise : informations dispersées et allers-retours permanents entre les applications.",
+  did:["Développement de fonctionnalités de la plateforme de gestion d'événements, en React / TypeScript côté interface et NestJS côté API.","Conception d'un <strong>webmail intégré</strong> à la plateforme, pour traiter les échanges sans quitter l'outil.","<strong>Synchronisation en temps réel</strong> entre la messagerie et la plateforme."],
+  dec:"Intégrer le webmail directement dans la plateforme plutôt que de dépendre d'un client mail externe : un seul endroit pour tout gérer, toujours à jour grâce à la synchronisation temps réel.",
+  n:"1 outil", res:"En production, avec des clients satisfaits : un seul endroit pour gérer l'ensemble de leurs événements." },
+ automation:{ k:["AppCraft","2026","n8n · Dust · MCP"], t:"Devis et factures sans ressaisie",
+  lead:"Remplacer une ressaisie manuelle, source d'oublis et d'erreurs, par des flux automatisés quasi temps réel.",
+  role:"Développeur full stack senior", stack:"n8n · Dust · MCP · HubSpot · Pennylane", status:"En production",
+  ctx:"Les devis sont gérés dans HubSpot, la facturation dans Pennylane : deux outils qui ne communiquaient pas.",
+  pb:"Les informations étaient reportées à la main d'un outil à l'autre, avec beaucoup d'oublis et d'erreurs sur les devis et les factures.",
+  did:["<strong>Workflows n8n</strong> pour synchroniser les devis HubSpot et relier la facturation Pennylane.","<strong>Agents IA Dust</strong> pour corriger les données et générer des devis.","Développement d'un <strong>serveur MCP maison</strong> pour connecter Pennylane aux agents."],
+  dec:"Pennylane ne proposait pas de serveur MCP et imposait des limitations. Plutôt que de renoncer à l'IA sur la facturation, j'ai développé notre propre serveur MCP pour exposer Pennylane aux agents Dust.",
+  n:"≈ 5 min", res:"Les données circulent entre HubSpot et Pennylane en quasi temps réel (environ 5 minutes de décalage), sans ressaisie manuelle." },
+ hublo:{ k:["Hublo","2021 — 2026","Tech Lead"], t:"Un service de pressing, trois villes",
+  lead:"Faire grandir une application grand public sans sacrifier sa stabilité.",
+  role:"Tech Lead · full stack & mobile", stack:"React Native · Expo · React · Node.js · Stripe Express · Crashlytics", status:"Sur l'App Store",
+  ctx:"Hublo propose un service de pressing à domicile : des apps mobiles React Native, un back-office React et une API Node.js.",
+  pb:"Ouvrir de nouvelles villes demandait un produit configurable par zone, l'intégration rapide de partenaires tiers — et une app qui reste stable à mesure que l'usage grandit.",
+  did:["Pilotage technique des apps React Native, du back-office et de l'API.","Déploiement dans <strong>3 villes</strong> : zones géographiques configurables et administration locale.","<strong>Mise à jour du SDK React Native</strong> et refonte de composants critiques.","Mise en place du <strong>monitoring</strong> de production avec Firebase Crashlytics.","Accompagnement de <strong>3 développeurs juniors</strong>."],
+  dec:"Stripe Express pour les paiements partenaires : une intégration rapide avec des tiers, adaptée à l'ouverture de nouvelles villes.",
+  n:"−50 %", res:"de crashs et −20 % de latence, suivis grâce au monitoring Crashlytics après la mise à jour du SDK et la refonte.",
+  link:{ href:"https://apps.apple.com/fr/app/id1554918876", label:"Voir l'app sur l'App Store" } },
+ l14:{ k:["IKOS","2023 — 2024","Mission freelance"], t:"Ligne 14 : prouver plutôt que tester",
+  lead:"Valider formellement les données du logiciel d'automatisation du métro parisien.",
+  role:"Ingénieur logiciel · freelance", stack:"Langage B · BOVADO", status:"Mise en production réussie",
+  ctx:"La ligne 14 du métro parisien est entièrement automatisée. Son logiciel, fourni par Siemens, doit être validé avec le niveau d'exigence des systèmes critiques.",
+  pb:"Une erreur dans les données du logiciel (PAG / PAN) peut compromettre la sûreté : il ne suffit pas de tester, il faut démontrer.",
+  did:["Validation des <strong>données du logiciel</strong> (PAG / PAN).","<strong>Preuves sur les données</strong>, formalisées comme des formules en langage B, avec BOVADO.","Remontée des anomalies au fournisseur <strong>Siemens</strong>, lors d'ateliers de travail communs."],
+  dec:"Exprimer les règles attendues sous forme de propriétés formelles en langage B : une donnée non conforme est détectée par la preuve, pas par chance lors d'un test.",
+  n:"✓", res:"Anomalies remontées et traitées avec Siemens ; mise en production réussie." }
+},
+en:{ _l:{ role:"Role", stack:"Stack", status:"Status", ctx:"Context", pb:"Problem", did:"What I did", dec:"Key decision", res:"Outcome", next:"Next case study", close:"Close" },
+ events:{ k:["AppCraft","2026","In production"], t:"All their events, one tool",
+  lead:"Bringing event management — webmail included — into a single platform.",
+  role:"Senior full-stack developer", stack:"React · TypeScript · Node.js · NestJS", status:"In production",
+  ctx:"AppCraft builds custom applications for its clients. One of them needed to manage its events end to end.",
+  pb:"Running an event meant juggling several tools, email included: scattered information and constant back-and-forth between apps.",
+  did:["Built features of the event management platform, with React / TypeScript on the front and NestJS on the API.","Designed a <strong>built-in webmail</strong> so conversations are handled without leaving the platform.","<strong>Real-time sync</strong> between the mailbox and the platform."],
+  dec:"Embedding the webmail in the platform instead of relying on an external mail client: one place to manage everything, always up to date thanks to real-time sync.",
+  n:"1 tool", res:"In production, with happy clients: a single place to manage all of their events." },
+ automation:{ k:["AppCraft","2026","n8n · Dust · MCP"], t:"Quotes and invoices, no re-typing",
+  lead:"Replacing manual re-entry — a source of missed items and errors — with near real-time automated flows.",
+  role:"Senior full-stack developer", stack:"n8n · Dust · MCP · HubSpot · Pennylane", status:"In production",
+  ctx:"Quotes live in HubSpot, invoicing in Pennylane: two tools that didn't talk to each other.",
+  pb:"Data was copied by hand from one tool to the other, with many missed items and errors on quotes and invoices.",
+  did:["<strong>n8n workflows</strong> syncing HubSpot quotes and connecting Pennylane invoicing.","<strong>Dust AI agents</strong> to correct data and generate quotes.","Built a <strong>custom MCP server</strong> to connect Pennylane to the agents."],
+  dec:"Pennylane offered no MCP server and came with limitations. Rather than giving up on AI for invoicing, I built our own MCP server to expose Pennylane to the Dust agents.",
+  n:"~5 min", res:"Data flows between HubSpot and Pennylane in near real time (about a 5-minute lag), with no manual re-entry." },
+ hublo:{ k:["Hublo","2021 — 2026","Tech Lead"], t:"One laundry service, three cities",
+  lead:"Growing a consumer app without sacrificing its stability.",
+  role:"Tech Lead · full-stack & mobile", stack:"React Native · Expo · React · Node.js · Stripe Express · Crashlytics", status:"On the App Store",
+  ctx:"Hublo runs an at-home laundry service: React Native mobile apps, a React back office and a Node.js API.",
+  pb:"Opening new cities required a product configurable by zone, fast integration of third-party partners — and an app that stays stable as usage grows.",
+  did:["Led technical delivery across the React Native apps, back office and API.","Expanded to <strong>3 cities</strong>: configurable geographic zones and regional administration.","<strong>React Native SDK upgrade</strong> and refactor of critical components.","Set up production <strong>monitoring</strong> with Firebase Crashlytics.","Mentored <strong>3 junior developers</strong>."],
+  dec:"Stripe Express for partner payments: fast integration with third parties, suited to opening new cities.",
+  n:"−50%", res:"crashes and −20% latency, tracked through Crashlytics monitoring after the SDK upgrade and refactor.",
+  link:{ href:"https://apps.apple.com/fr/app/id1554918876", label:"See the app on the App Store" } },
+ l14:{ k:["IKOS","2023 — 2024","Freelance"], t:"Line 14: prove, don't just test",
+  lead:"Formally validating the data of the Paris Metro automation software.",
+  role:"Software engineer · freelance", stack:"B language · BOVADO", status:"Successful go-live",
+  ctx:"Paris Metro Line 14 is fully automated. Its software, supplied by Siemens, must be validated to safety-critical standards.",
+  pb:"An error in the software data (PAG / PAN) can compromise safety: testing isn't enough, it has to be proven.",
+  did:["Validated the <strong>software data</strong> (PAG / PAN).","<strong>Data proofs</strong> written as formulas in the B language, using BOVADO.","Reported anomalies to the supplier, <strong>Siemens</strong>, in joint working sessions."],
+  dec:"Expressing the expected rules as formal properties in B: non-compliant data is caught by proof, not by luck during a test.",
+  n:"✓", res:"Anomalies reported and resolved with Siemens; successful go-live." }
+}};
+const CASE_ORDER = ['events','automation','hublo','l14'];
+const csEl = document.getElementById('cs'), csInner = document.getElementById('csInner'), csBack = document.getElementById('csBack'), csClose = document.getElementById('csClose');
+let currentCase = null, csReturnFocus = null;
+function renderCase(id){
+  const c = CASES[lang][id], L = CASES[lang]._l;
+  const nextId = CASE_ORDER[(CASE_ORDER.indexOf(id) + 1) % CASE_ORDER.length];
+  csClose.setAttribute('aria-label', L.close);
+  csInner.innerHTML = `
+    <div class="cs-k mono">${c.k.map(x => `<span>${x}</span>`).join('<span>·</span>')}</div>
+    <h3 id="csTitle">${c.t}</h3>
+    <p class="cs-lead">${c.lead}</p>
+    <div class="cs-meta"><div><span class="mono">${L.role}</span><b>${c.role}</b></div><div><span class="mono">${L.stack}</span><b>${c.stack}</b></div><div><span class="mono">${L.status}</span><b>${c.status}</b></div></div>
+    <div class="cs-sec"><h4>${L.ctx}</h4><p>${c.ctx}</p></div>
+    <div class="cs-sec"><h4>${L.pb}</h4><p>${c.pb}</p></div>
+    <div class="cs-sec"><h4>${L.did}</h4><ul>${c.did.map(d => `<li><span>${d}</span></li>`).join('')}</ul></div>
+    <div class="cs-sec"><h4>${L.dec}</h4><p class="cs-dec">${c.dec}</p></div>
+    <div class="cs-sec"><h4>${L.res}</h4><div><div class="cs-res"><span class="big-n">${c.n}</span><p>${c.res}</p></div></div></div>
+    <div class="cs-actions">
+      ${c.link ? `<a class="btn primary" href="${c.link.href}" target="_blank" rel="noopener">${c.link.label} ↗</a>` : '<span></span>'}
+      <button class="cs-next" data-next="${nextId}">${L.next} → <b>${CASES[lang][nextId].t}</b></button>
+    </div>`;
+  csInner.querySelector('.cs-next').addEventListener('click', () => openCase(nextId));
+  csInner.scrollTop = 0;
+  if (MOTION) gsap.from(csInner.children, { y:24, opacity:0, duration:.8, stagger:.05, ease:'expo.out', delay:.15 });
+}
+function openCase(id){
+  if (!currentCase) csReturnFocus = document.activeElement;
+  currentCase = id; renderCase(id);
+  csEl.classList.add('open'); csBack.classList.add('open'); csEl.setAttribute('aria-hidden', 'false');
+  document.documentElement.classList.add('cs-lock'); if (lenis) lenis.stop();
+  setTimeout(() => csClose.focus({ preventScroll:true }), 50);
+}
+function closeCase(){
+  currentCase = null;
+  csEl.classList.remove('open'); csBack.classList.remove('open'); csEl.setAttribute('aria-hidden', 'true');
+  document.documentElement.classList.remove('cs-lock'); if (lenis) lenis.start();
+  if (csReturnFocus) csReturnFocus.focus({ preventScroll:true }); csReturnFocus = null;
+}
+csClose.addEventListener('click', closeCase);
+csBack.addEventListener('click', closeCase);
+document.querySelectorAll('.proj[data-case]').forEach(card => {
+  card.addEventListener('click', () => openCase(card.dataset.case));
+  card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openCase(card.dataset.case); } });
+});
+// keep keyboard focus inside the open drawer
+csEl.addEventListener('keydown', e => {
+  if (e.key !== 'Tab') return;
+  const f = [...csEl.querySelectorAll('button, a[href]')]; if (!f.length) return;
+  const first = f[0], last = f[f.length - 1];
+  if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+  else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
 });
 
 /* ---------------- copy email ---------------- */
