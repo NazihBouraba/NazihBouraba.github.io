@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Abdelouareth Bouraba — Développeur full stack senior</title>
-<meta name="description" content="Portfolio d'Abdelouareth Bouraba, développeur full stack senior (React, TypeScript, Node.js, NestJS, n8n). Basé à Créteil, ouvert au 100 % télétravail.">
+<meta name="description" content="Portfolio d'Abdelouareth Bouraba, développeur full stack senior (React, TypeScript, Node.js, NestJS, n8n). Basé en France, ouvert au 100 % télétravail.">
 <meta property="og:title" content="Abdelouareth Bouraba — Full stack senior">
 <meta property="og:description" content="React · TypeScript · Node.js · NestJS · React Native · n8n">
 <meta property="og:type" content="website">
@@ -61,7 +61,7 @@ body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;
 @media (hover:none),(pointer:coarse){.cursor,.cursor-ring{display:none}}
 
 /* nav */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px var(--gut);display:flex;align-items:center;justify-content:space-between;gap:1rem;transition:transform .5s var(--ease),background .4s}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:26px var(--gut) 18px;background:linear-gradient(to bottom,rgba(10,10,12,.85),rgba(10,10,12,0));display:flex;align-items:center;justify-content:space-between;gap:1rem;transition:transform .5s var(--ease),background .4s}
 nav.scrolled{background:rgba(10,10,12,.6);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 nav.hide{transform:translateY(-100%)}
 .logo{font-weight:800;font-size:1.25rem;letter-spacing:-.04em;display:flex;align-items:center;gap:.5rem}
@@ -80,7 +80,17 @@ nav.hide{transform:translateY(-100%)}
 .status{display:flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.7rem;text-transform:uppercase;color:var(--mute);border:1px solid var(--line);border-radius:999px;padding:7px 12px}
 .status i{width:7px;height:7px;border-radius:50%;background:var(--acc);box-shadow:0 0 0 0 rgba(200,255,62,.6);animation:ping 2s infinite}
 @keyframes ping{0%{box-shadow:0 0 0 0 rgba(200,255,62,.55)}70%{box-shadow:0 0 0 9px rgba(200,255,62,0)}100%{box-shadow:0 0 0 0 rgba(200,255,62,0)}}
-@media (max-width:900px){.nav-links{display:none}}
+.menu-btn{display:none;align-items:center;gap:.6rem;border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:.72rem}
+.menu-btn i{position:relative;width:14px;height:8px}
+.menu-btn i::before,.menu-btn i::after{content:"";position:absolute;left:0;right:0;height:1.5px;background:currentColor;transition:transform .4s var(--ease),top .4s var(--ease)}
+.menu-btn i::before{top:0}.menu-btn i::after{top:6px}
+.menu-btn[aria-expanded="true"] i::before{top:3px;transform:rotate(45deg)}
+.menu-btn[aria-expanded="true"] i::after{top:3px;transform:rotate(-45deg)}
+.mnav{position:fixed;inset:0;z-index:99;background:var(--bg);display:flex;flex-direction:column;justify-content:center;gap:.4rem;padding:100px var(--gut) 40px;clip-path:inset(0 0 100% 0);transition:clip-path .7s var(--ease),visibility 0s .7s;visibility:hidden}
+.mnav.open{clip-path:inset(0 0 0 0);visibility:visible;transition:clip-path .7s var(--ease)}
+.mnav a{display:flex;align-items:baseline;gap:1rem;font-size:clamp(2.2rem,11vw,4rem);font-weight:700;letter-spacing:-.04em;line-height:1.1;border-bottom:1px solid var(--line);padding:.5rem 0}
+.mnav a .mono{color:var(--acc);font-size:.75rem}
+@media (max-width:900px){.nav-links{display:none}.menu-btn{display:inline-flex}}
 @media (max-width:560px){.status{display:none}}
 
 /* hero */
@@ -274,7 +284,8 @@ footer a:hover{color:var(--acc)}
     <a href="#contact" data-i18n="nav.contact">Contact</a>
   </div>
   <div class="nav-right">
-    <span class="status"><i></i><span data-i18n="status">Dispo · 100 % remote</span></span>
+    <span class="status"><i></i><span data-i18n="status">Ouvert aux opportunités · remote</span></span>
+    <button class="menu-btn mono" id="menuBtn" aria-expanded="false" aria-controls="mnav"><span data-i18n="menu">Menu</span><i></i></button>
     <div class="lang" id="lang" data-l="fr" role="group" aria-label="Langue / Language">
       <span class="pill"></span>
       <button data-set="fr" class="on" aria-pressed="true">FR</button>
@@ -282,6 +293,14 @@ footer a:hover{color:var(--acc)}
     </div>
   </div>
 </nav>
+
+<div class="mnav" id="mnav" aria-hidden="true">
+  <a href="#about"><span class="mono">01</span><span data-i18n="nav.about">À propos</span></a>
+  <a href="#xp"><span class="mono">02</span><span data-i18n="nav.xp">Parcours</span></a>
+  <a href="#work"><span class="mono">03</span><span data-i18n="nav.work">Réalisations</span></a>
+  <a href="#skills"><span class="mono">04</span><span data-i18n="nav.skills">Compétences</span></a>
+  <a href="#contact"><span class="mono">05</span><span data-i18n="nav.contact">Contact</span></a>
+</div>
 
 <main id="top">
 <!-- HERO -->
@@ -291,7 +310,7 @@ footer a:hover{color:var(--acc)}
     <div class="hero-top">
       <span class="kicker mono" data-i18n="hero.kicker">Développeur full stack senior</span>
       <div class="hero-meta mono">
-        <span data-i18n="hero.based">Basé à</span><b>Créteil, FR</b>
+        <span data-i18n="hero.based">Basé en</span><b>France</b>
         <span data-i18n="hero.exp">Expérience</span><b data-i18n="hero.years">5 ans</b>
         <span data-i18n="hero.mode">Mode</span><b data-i18n="hero.remote">100 % télétravail</b>
       </div>
@@ -390,7 +409,7 @@ footer a:hover{color:var(--acc)}
     <div class="work">
 
       <!-- Webmail -->
-      <article class="proj rv" data-cursor="label" data-label-fr="AppCraft" data-label-en="AppCraft">
+      <article class="proj rv">
         <div class="viz">
           <svg viewBox="0 0 640 340" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
             <defs><linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#c8ff3e"/><stop offset="1" stop-color="#8b7bff"/></linearGradient></defs>
@@ -411,14 +430,14 @@ footer a:hover{color:var(--acc)}
           </svg>
         </div>
         <div class="proj-body">
-          <div class="proj-top mono"><span>AppCraft · 2026</span><span class="arrow">↗</span></div>
+          <div class="proj-top mono"><span>AppCraft · 2026</span></div>
           <h3 data-i18n="p1.t">Webmail sur mesure</h3>
           <p data-i18n="p1.d">Une interface de messagerie personnalisée pour les applications clients, construite en React et TypeScript sur une API Node.js / NestJS.</p>
         </div>
       </article>
 
       <!-- n8n -->
-      <article class="proj rv" data-cursor="label" data-label-fr="Automatiser" data-label-en="Automate">
+      <article class="proj rv">
         <div class="viz">
           <svg viewBox="0 0 460 340" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
             <g fill="none" stroke="rgba(236,235,228,.18)" stroke-width="2">
@@ -446,14 +465,14 @@ footer a:hover{color:var(--acc)}
           </svg>
         </div>
         <div class="proj-body">
-          <div class="proj-top mono"><span>n8n · HubSpot · Pennylane</span><span class="arrow">↗</span></div>
+          <div class="proj-top mono"><span>n8n · HubSpot · Pennylane</span></div>
           <h3 data-i18n="p2.t">Workflows qui travaillent seuls</h3>
           <p data-i18n="p2.d">Devis synchronisés avec HubSpot, facturation reliée à Pennylane, données corrigées et devis générés automatiquement.</p>
         </div>
       </article>
 
       <!-- Hublo multi-city -->
-      <article class="proj rv" data-cursor="label" data-label-fr="Hublo" data-label-en="Hublo">
+      <article class="proj rv">
         <div class="viz">
           <svg viewBox="0 0 460 340" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
             <g stroke="rgba(236,235,228,.06)"><path d="M0 60H460M0 120H460M0 180H460M0 240H460M0 300H460M60 0V340M120 0V340M180 0V340M240 0V340M300 0V340M360 0V340M420 0V340"/></g>
@@ -477,14 +496,14 @@ footer a:hover{color:var(--acc)}
           </svg>
         </div>
         <div class="proj-body">
-          <div class="proj-top mono"><span>Hublo · 2021—2026</span><span class="arrow">↗</span></div>
+          <div class="proj-top mono"><span>Hublo · 2021—2026</span></div>
           <h3 data-i18n="p3.t">Un service, plusieurs villes</h3>
           <p data-i18n="p3.d">Apps React Native, back-office React et API Node.js : zones configurables, admin locale, paiements partenaires Stripe Express.</p>
         </div>
       </article>
 
       <!-- Ligne 14 -->
-      <article class="proj rv" data-cursor="label" data-label-fr="Ligne 14" data-label-en="Line 14">
+      <article class="proj rv">
         <div class="viz">
           <svg viewBox="0 0 640 340" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
             <path id="l14" d="M40 250 C140 250 160 120 260 120 S400 220 480 160 S580 80 610 90" fill="none" stroke="#62259d" stroke-width="16" stroke-linecap="round"/>
@@ -503,7 +522,7 @@ footer a:hover{color:var(--acc)}
           </svg>
         </div>
         <div class="proj-body">
-          <div class="proj-top mono"><span>IKOS · 2023—2024</span><span class="arrow">↗</span></div>
+          <div class="proj-top mono"><span>IKOS · 2023—2024</span></div>
           <h3 data-i18n="p4.t">Ligne 14 : prouver plutôt que tester</h3>
           <p data-i18n="p4.d">Validation formelle du logiciel d'automatisation du métro parisien avec le langage B et BOVADO, dans un contexte à fortes exigences de sûreté.</p>
         </div>
@@ -535,7 +554,7 @@ footer a:hover{color:var(--acc)}
 <!-- CONTACT -->
 <section class="contact" id="contact">
   <div class="wrap">
-    <div class="sec-head" style="border:0;margin-bottom:24px"><span class="mono" data-i18n="ct.label">(05) — Contact</span><span class="mono" data-i18n="status2">Disponible maintenant</span></div>
+    <div class="sec-head" style="border:0;margin-bottom:24px"><span class="mono" data-i18n="ct.label">(05) — Contact</span><span class="mono" data-i18n="status2">Ouvert aux opportunités</span></div>
     <h2 class="big" id="bigline">
       <span class="line"><span data-i18n="ct.l1">Construisons</span></span>
       <span class="line"><span><a href="mailto:nazih199951@gmail.com" class="fill-link" data-cursor="label" data-label-fr="Écrire" data-label-en="Write" data-i18n="ct.l2">ensemble</a><span class="serif">.</span></span></span>
@@ -555,7 +574,7 @@ footer a:hover{color:var(--acc)}
 <footer>
   <div class="wrap mono">
     <span>© 2026 Abdelouareth Bouraba</span>
-    <span>Créteil · <span class="clock" id="clock">--:--</span> <span data-i18n="ft.tz">(heure de Paris)</span></span>
+    <span>France · <span class="clock" id="clock">--:--</span> <span data-i18n="ft.tz">(heure de Paris)</span></span>
     <a href="#top" data-i18n="ft.top">Retour en haut ↑</a>
   </div>
 </footer>
@@ -573,9 +592,9 @@ if (MOTION) { gsap.registerPlugin(ScrollTrigger); document.documentElement.class
 /* ---------------- i18n ---------------- */
 const T = {
 fr:{
- loading:"Chargement","nav.about":"À propos","nav.xp":"Parcours","nav.work":"Réalisations","nav.skills":"Compétences","nav.contact":"Contact",
- status:"Dispo · 100 % remote",status2:"Disponible maintenant",
- "hero.kicker":"Développeur full stack senior","hero.based":"Basé à","hero.exp":"Expérience","hero.years":"5 ans","hero.mode":"Mode","hero.remote":"100 % télétravail",
+ loading:"Chargement",menu:"Menu","nav.about":"À propos","nav.xp":"Parcours","nav.work":"Réalisations","nav.skills":"Compétences","nav.contact":"Contact",
+ status:"Ouvert aux opportunités · remote",status2:"Ouvert aux opportunités",
+ "hero.kicker":"Développeur full stack senior","hero.based":"Basé en","hero.exp":"Expérience","hero.years":"5 ans","hero.mode":"Mode","hero.remote":"100 % télétravail",
  "hero.lead":"Je construis des produits web &amp; mobile <em>solides</em> — et j'automatise tout ce qui ralentit les équipes.","hero.scroll":"Défiler",
  "about.label":"(01) — À propos",
  statement:"Cinq ans à faire passer des idées du *ticket à la production.* React et React Native côté interface, Node.js et NestJS côté API, n8n pour relier les outils métier. J'utilise l'IA pour aller ~vite, et ma rigueur pour livrer ~juste.",
@@ -605,8 +624,8 @@ fr:{
  "ct.cv":"CV (PDF)","ft.tz":"(heure de Paris)","ft.top":"Retour en haut ↑",copied:"Adresse copiée ✓"
 },
 en:{
- loading:"Loading","nav.about":"About","nav.xp":"Experience","nav.work":"Work","nav.skills":"Skills","nav.contact":"Contact",
- status:"Available · fully remote",status2:"Available now",
+ loading:"Loading",menu:"Menu","nav.about":"About","nav.xp":"Experience","nav.work":"Work","nav.skills":"Skills","nav.contact":"Contact",
+ status:"Open to opportunities · remote",status2:"Open to opportunities",
  "hero.kicker":"Senior full-stack engineer","hero.based":"Based in","hero.exp":"Experience","hero.years":"5 years","hero.mode":"Mode","hero.remote":"Fully remote",
  "hero.lead":"I build <em>solid</em> web &amp; mobile products — and automate everything that slows teams down.","hero.scroll":"Scroll",
  "about.label":"(01) — About",
@@ -689,6 +708,16 @@ document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click
   else (t === 0 ? window.scrollTo({top:0, behavior:'smooth'}) : t.scrollIntoView({behavior:'smooth'}));
 }));
 
+/* ---------------- mobile menu ---------------- */
+const menuBtn = document.getElementById('menuBtn'), mnav = document.getElementById('mnav');
+function setMenu(open){
+  menuBtn.setAttribute('aria-expanded', open); mnav.classList.toggle('open', open); mnav.setAttribute('aria-hidden', !open);
+  if (lenis) open ? lenis.stop() : lenis.start();
+}
+menuBtn.addEventListener('click', () => setMenu(menuBtn.getAttribute('aria-expanded') !== 'true'));
+mnav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false), { capture:true }));
+addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+
 /* ---------------- nav hide on scroll ---------------- */
 const nav = document.getElementById('nav'); let lastY = 0;
 addEventListener('scroll', () => {
@@ -712,14 +741,15 @@ function intro(){
     .from('.title .char', { yPercent:115, rotate:6, duration:1.2, stagger:.035, ease:'expo.out' }, '-=.55')
     .from('.badge', { scale:0, rotate:-120, duration:1.2, ease:'expo.out' }, '-=.9')
     .from('.hero-top > *, .hero-bottom > *', { y:30, opacity:0, duration:1, stagger:.08, ease:'expo.out' }, '-=1')
-    .from('nav', { y:-30, opacity:0, duration:.9, ease:'expo.out' }, '-=.9')
+    .from('nav', { yPercent:-100, opacity:0, duration:.9, ease:'expo.out', clearProps:'transform,translate,rotate,scale,opacity', onStart(){ nav.style.transition = 'none'; }, onComplete(){ nav.style.transition = ''; } }, '-=.9')
     .add(() => loader.remove());
 }
 (function runLoader(){
   if (!MOTION) { intro(); return; }
   const c = document.getElementById('count'), bar = document.getElementById('bar');
+  let seen = false; try { seen = sessionStorage.getItem('seen') === '1'; sessionStorage.setItem('seen','1'); } catch(e) {}
   const o = { v:0 };
-  gsap.to(o, { v:100, duration:1.5, ease:'power2.inOut', onUpdate(){ const v = Math.round(o.v); c.textContent = v; bar.style.width = v + '%'; }, onComplete:intro });
+  gsap.to(o, { v:100, duration:seen ? .35 : .9, ease:'power2.inOut', onUpdate(){ const v = Math.round(o.v); c.textContent = v; bar.style.width = v + '%'; }, onComplete:intro });
 })();
 
 /* ---------------- scroll animations ---------------- */
@@ -746,7 +776,9 @@ if (MOTION) {
     const cards = gsap.utils.toArray('.xp');
     cards.forEach((card, i) => {
       if (i === cards.length - 1) return;
-      gsap.to(card, { scale:.9 + i*.02, filter:'brightness(.55)', ease:'none', scrollTrigger:{ trigger:cards[i+1], start:'top bottom', end:'top 30%', scrub:true } });
+      // only dim once the next card actually starts covering this one
+      const stickTop = 96 + (i+1)*22;
+      gsap.fromTo(card, { scale:1, filter:'brightness(1)' }, { scale:.94 + i*.015, filter:'brightness(.6)', ease:'power1.in', immediateRender:false, scrollTrigger:{ trigger:cards[i+1], start:'top 55%', end:`top ${stickTop}px`, scrub:.4 } });
     });
   });
   mm.add('(max-width: 860px)', () => {
